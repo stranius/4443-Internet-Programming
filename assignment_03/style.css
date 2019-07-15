@@ -1,0 +1,16 @@
+.grid_layout {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: auto;
+}
+
+.grid_item {
+    background: black;
+    justify-self: stretch;
+    text-align: center;
+}
+
+.grid_item p {
+    font-size: 18px;
+    font-weight: 600;
+}
