@@ -18,7 +18,7 @@
             }
             
             .grid_item p {
-                font-size: 18px;
+                font-size: 14px;
                 font-weight: 600;
             }
         </style>
@@ -64,8 +64,9 @@
                         let background_color = color.html;
                         let name = color.name;
                         let font_color = getContrastYIQ(background_color);
+                        let rgb = color.rgb;
                         console.log(font_color);
-                        div.innerHTML += "<div class='grid_item' style='background-color: " + background_color + "; color: " + font_color + "'> <p>" + name + "</p> <p style='background-color: " + background_color + "; font-size: 15px; font-weight: 500;'>" + background_color + "</p> </div>";
+                        div.innerHTML += "<div class='grid_item' style='background-color: " + background_color + "; color: " + font_color + "'> <p> Name : " + name + "</p> <p style='background-color: " + background_color + "; font-size: 12px; font-weight: 450;'> HTML : " + background_color + "</p> <p style='background-color: " + background_color + "; font-size: 12px; font-weight: 450;'> RGB : " + rgb + "</p> </div>";
                     })
                 })
             }
