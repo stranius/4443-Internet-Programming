@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <header>
+        <!-- Links -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <!-- Scripts -->
+        <script src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    </header>
+    <body style="margin: 0; overflow: hidden;">
+        <div id="getStarted" style="display: inline-block; text-align: center; width: 100%;">
+            <p class="getStartedHeader">Create a Meme</p>
+            <p class="getStartedDesc">Start with a .jpg and turn it into an epic meme!</p>
+            <button id="hideButton" class="getStartedButton">Get Started</button>
+        </div>
+
+        <div id="chooseSample" class="sampleImagesHolder" style="display: none;"></div>
+
+        <div id="usersCreations" class="usersCreationsHolder" style="display: none;"></div>
+
+        <div id="creatorScreen" style="background: #2d2d2d; display: none; height: 100vh; width: 100%;">
+            <div class="introScreen">
+
+            </div>
+            <div class="leftSide">
+                <div style="display: table">
+                    <input id="topInput" class="textInput" type="text" placeholder="Top Text">
+                    <input id="bottomInput" class="textInput" type="text" placeholder="Bottom Text" style="margin-top: 50px;">
+                    <div style="margin-top: 70px;">
+                        <label for="imgInput" class="imgInput">
+                            <img id="theImage" src="uploadCloud.png" style="height: 20px; width: 20px; margin-bottom: -4px;"> Upload Image
+                        </label>
+                        <input id="imgInput" type="file">
+                        <button id="chooseSampleButton" class="imgInput" style="margin-left: 10px;">Choose a sample</button>
+                        <button id="usersCreationsButton" class="imgInput" style="margin-left: 10px;">User Creations</button>
+                    </div>
+                </div>
+            </div>
+            <div class="rightSide">
+                <canvas id="canvas" width="400" height="400" style="margin: 0 150px 0 150px; border: 2px solid white;"></canvas>
+                <button id="jpgD" class="downloadButton">JPG</button>
+                <button id="pngD" class="downloadButton">PNG</button>
+            </div>
+        </div>
+        <!-- <canvas id="canvas" style="display: none;"></canvas> -->
+    </body>
+</html>

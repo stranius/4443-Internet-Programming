@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>X, Y Coordinates using jQuery</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <style>
+        body {
+            padding: 20px;
+        }
+
+        .meme {
+            font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+            font-size: 27px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 700;
+            line-height: 26.4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="width:300px;">
+        <div><img src="https://pbs.twimg.com/profile_images/934774747879030785/gayJ5OIs_400x400.jpg" alt="" /></div>
+        <div style="padding-top:20px;">
+            <div id="coord"></div>
+        </div>
+        <div id="divIntro" class="meme" style="width:auto;display:none;"></div>
+    </div>
+    <div><textarea rows="10" cols="60" id="memetexttop"></textarea></div>
+    <!-- <img src="text_add.php" alt="" /> -->
+    <img src="./uploads/banana2.jpg" alt="" />
+    <script>
+        $(document).ready(function () {
+            $('img').click(function (e) {
+
+                var memetext = $('#memetexttop').val();
+
+                var offset = $(this).offset();
+                var X = (e.pageX - offset.left);
+                var Y = (e.pageY - offset.top);
+                $('#coord').text('X: ' + X + ', Y: ' + Y);
+
+                $('#divIntro')
+                    .show()
+                    .text(memetext)
+                    //.text('At location - X: ' + e.pageX + ' Y:' + e.pageY)
+                    .css({
+                        position: 'absolute',
+                        color: '#000',
+                        left: e.pageX,
+                        top: e.pageY
+                    });
+            });
+
+            $('#memetexttop').keyup(function () {
+                $('#divIntro')
+                    .show()
+                    .text($('#memetexttop').val())
+                    .css({
+                        position: 'absolute',
+                        color: '#000',
+                        left: 30,
+                        top: 30
+                    });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+/* Classes for main page */
+
+.getStartedHeader {
+    color: #3d7a73;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 52px;
+    font-weight: 650;
+    margin: 15% auto 0 auto;
+}
+
+.getStartedDesc {
+    color: #8d9191;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: 650;
+    margin: 1% auto 0 auto;
+}
+
+.getStartedButton {
+    background: #213333;
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 5%;
+    padding: 10px 40px;
+    transform: scale(1);
+    transition-duration: 1s;
+}
+
+.getStartedButton:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 1s;
+}
+
+.getStartedButton:focus {
+    outline: none;
+}
+
+/* END ------------ Classes for main page */
+
+/* Classes for creator page */
+
+.leftSide {
+    display: table-cell;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    width: 50%;
+}
+
+.rightSide {
+    display: table-cell;
+    height: 100%;
+    margin: 0 0 0 50%;
+    padding-top: 15%;
+    position: absolute;
+    text-align: center;
+    width: 50%;
+}
+
+.textInput {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #aaaaaa;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    font-weight: 650;
+    margin: 45% 200px 0 200px;
+    position: relative;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.imgInput {
+    background: #3d7a73;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 100px 0 0 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.memeImg {
+    height: 400px;
+    margin: 25% 0 0 0;
+    width: 400px;
+}
+
+.downloadButton {
+    background: #3d7a73;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 10px auto;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* END ------------ Classes for creator page */
+
+/* Classes for sample image picker */
+
+.usersCreationsHolder {
+    background: #cccccc;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: repeat(5, 25%);
+    height: 80vh;
+    left: 0;
+    margin: 10vh 0 0 15%;
+    position: absolute;
+    top: 0;
+    width: 70%;
+    z-index: 10;
+}
+
+.sampleImagesHolder {
+    background: #213333;
+    border: 2px solid white;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 25% 25% 25% 25%;
+    height: 80vh;
+    left: 0;
+    margin: 10vh 0 0 15%;
+    position: absolute;
+    top: 0;
+    width: 70%;
+    z-index: 10;
+}
+
+.sampleImage {
+    background: #2d2d2d;
+    border: 1px solid white;
+    border-radius: 15px;
+    height: 90%;
+    left: 0;
+    margin: 2vh 0 0 10%;
+    position: relative;
+    top: 0;
+    width: 80%;
+}
+
+.sampleImage:hover {
+    cursor: pointer;
+}
