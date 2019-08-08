@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment 06</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            .grid {
+                display: grid;
+                grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5%;
+                grid-template-rows: auto;
+            }
+
+            .student_holder {
+                background: #ffffff;
+                border-color: #e6e6e6;
+                border-radius: 10px;
+                border-style: solid;
+                border-width: 1px;
+                box-shadow: 0px 21px 41px -7px rgba(0,0,0,0.46);
+                height: fit-content;
+                justify-self: stretch;
+                margin: 10px;
+                padding: 10px 10px;
+                width: auto;
+            }
+
+            .student_pic {
+                border-radius: 50%;
+                height: 50px;
+                margin-left: 29%;
+                margin-right: auto;
+                width: 50px;
+            }
+
+            .student_name {
+                color: #3b3b3b;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 14px;
+                font-weight: 550;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+
+            .student_text {
+                color: #949494;
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 11px;
+                font-weight: 500;
+                margin-top: 0px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <div class="grid" id="grid">
+        </div>
+    </body>
+    <script>
+        var form_data = {
+            'route':'student',
+            'first-name': $('#first-name').val(),
+            'last-name': $('#last-name').val(),
+            'email': $('#email').val(),
+            'city': $('#city').val(),
+            'age': $('#age').val(),
+            'state': $('#state').val()
+        }
+    
+        $.post("http://159.65.231.216/assignment_06/api.php", form_data)
+            .done(function (data) {
+                console.log(data);
+                data.data.forEach(function(student) {
+                    let grid = document.getElementById("grid");
+                    let fn = student.first_name;
+                    let ln = student.last_name;
+                    let id = student.mustang_id;
+                    let img_url = "card_services_data" + student.photo;
+                    $(".grid").append('<div class="student_holder"> <img class="student_pic" src="' + img_url + '"> <p class="student_name">' + fn + ' ' + ln + '</p> <p class="student_text">' + id + '</p> </div>');
+                    //grid.innerHTML += '<div class="student_holder"> <img class="student_pic" src="' + img_url + '"> <p class="student_name">' + fn + ' ' + ln + '</p> <p class="student_text">' + id + '</p> </div>';
+                })
+            });
+    </script>
+</html>
