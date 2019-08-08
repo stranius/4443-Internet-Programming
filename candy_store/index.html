@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment 06</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+        <!-- <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous"> -->
+        <style>
+            .candyHolder {
+                background: #fcfcfc;
+                border-radius: 10px;
+                border-color: #eeeeee;
+                border-style: solid;
+                border-width: 2px;
+                overflow: hidden;
+            }
+
+            .candyName {
+                color: #3b3b3b;
+                font-size: 14px;
+                font-weight: 530;
+            }
+
+            .candyPrice {
+                color: #3b3b3b;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+        <!-- https://purecss.io/forms/ -->
+        <form class="pure-form">
+            <fieldset>
+                <legend>A Inline Form</legend>
+                <div class="pure-g">
+                    <div class="pure-u-1 pure-u-md-1-4">
+        
+                        <label for="resultCount">Result Size:</label>
+                        <select id="resultCount">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>50</option>
+                        </select>
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-4">
+                        <input id="searchInput" type="text" class="pure-input-rounded">
+                        
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-4">
+                        <button id="submit" type="submit" class="pure-button">Search</button>
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-4">
+                        <label for="remember" class="pure-checkbox">
+                            <input id="remember" type="checkbox"> Remember my choice
+                        </label>
+                    </div>
+                    <div class="pure-u-1 pure-u-md-1-4">
+                        <select id="categories">
+                            <option val="Hard Candy">Hard Candy</option>
+                        </select>
+                    </div>
+            </fieldset>
+        </form>
+
+        <div id="serachResults">
+            <div class='candyHolder'>
+                <div class="pure-u-1 pure-u-md-1-4 pure-g">
+                    <img class="pure-u-1 pure-u-md-1-3" src="https://media.candystore.com/catalog/product/cache/1/small_image/200x/9df78eab33525d08d6e5fb8d27136e95/s/i/silver_foil_lemon_hard_candy.jpeg">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <p>NaSoemthasf asdf me</p>
+                        <p>$ 19.35</p>  
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- at the bottom of your output -->
+
+        <button id="next" data-start="10" data-chunk="10"> >Next</button>
+    </body>
+
+    <script>
+
+        var nextCounter = 1;
+        var column = "title";
+
+        $.get("http://159.65.231.216/candy_store/api/api?route=categories").done(function (data) {
+            for(var i in data.data) {
+                let val = data.data[i].replace(/ /g,"-");
+                $('#categories').append('<option value="' + val + '">' + data.data[i] + '</option>')
+            }
+        })
+
+        $('#categories').on('change', function(event) {
+            nextCounter = 1;
+            column = "category";
+            let c = $('#categories').val();
+            let r = $('#resultCount').val(); //Value for start and chunk
+            $('#serachResults').html(""); //Reset the inner HTML of the div so only new results show
+            
+            $.get("http://159.65.231.216/candy_store/api/api?route=candy&column=category&keyword=" + c + "&matchtype=wildcard&start=" + r + "&chunk=" + r).done(function (data) {
+                let json = data.data; //json data that is returned from the get request
+                console.log(json);
+                json.forEach(function (ele) { //Loop through each one and add an element to the searchResults div
+                    console.log(ele);
+                    let img = '<img id="'+ele.id+'" src="'+ele.original_image_url+'" class="pure-u-1 pure-u-md-1-2">';
+                    let name = '<p class="candyName">' + ele.title + '</p>';
+                    let price = '<p class="candyPrice">' + ele.price + '</p>';
+                    $('#serachResults').append('<div class="candyHolder"> <div class="pure-u-1 pure-u-md-1-4 pure-g">' + img + '<div class="pure-u-1 pure-u-md-1-3">' + name + price + '</div> </div>'); //Add the element
+                });
+            });
+        })
+
+        $('#submit').on("click", function(event) {
+            nextCounter = 1;
+            column = "title";
+
+            event.preventDefault();
+            let d = $('#searchInput').val(); //The keyword to search for
+            let r = $('#resultCount').val(); //Value for start and chunk
+            console.log("Submitting");
+            $('#serachResults').html(""); //Reset the inner HTML of the div so only new results show
+
+            $.get("http://159.65.231.216/candy_store/api/api?route=candy&column=title&keyword=" + d + "&matchtype=wildcard&start=" + r + "&chunk=" + r).done(function (data) {
+                let json = data.data; //json data that is returned from the get request
+                console.log(json);
+                json.forEach(function (ele) { //Loop through each one and add an element to the searchResults div
+                    console.log(ele);
+                    let img = '<img id="'+ele.id+'" src="'+ele.original_image_url+'" class="pure-u-1 pure-u-md-1-2">';
+                    let name = '<p class="candyName">' + ele.title + '</p>';
+                    let price = '<p class="candyPrice">' + ele.price + '</p>';
+                    $('#serachResults').append('<div class="candyHolder"> <div class="pure-u-1 pure-u-md-1-4 pure-g">' + img + '<div class="pure-u-1 pure-u-md-1-3">' + name + price + '</div> </div>'); //Add the element
+                });
+            });
+        })
+
+        $("#next").on("click",function(event) {
+            nextCounter += 1;
+            let d = (column == 'title')?$('#searchInput').val():$('#categories').val(); //The keyword to search for
+            let chunk = $('#resultCount').val(); //Value for start and chunk
+            let start = chunk * nextCounter;
+
+            $.get("http://159.65.231.216/candy_store/api/api?route=candy&column=" + column + "&keyword=" + d + "&matchtype=wildcard&start=" + start + "&chunk=" + chunk).done(function (data) {
+                let json = data.data; //json data that is returned from the get request
+                console.log(json);
+                json.forEach(function (ele) { //Loop through each one and add an element to the searchResults div
+                    console.log(ele);
+                    let img = '<img id="'+ele.id+'" src="'+ele.original_image_url+'" class="pure-u-1 pure-u-md-1-2">';
+                    let name = '<p class="candyName">' + ele.title + '</p>';
+                    let price = '<p class="candyPrice">' + ele.price + '</p>';
+                    $('#serachResults').append('<div class="candyHolder"> <div class="pure-u-1 pure-u-md-1-4 pure-g">' + img + '<div class="pure-u-1 pure-u-md-1-3">' + name + price + '</div> </div>'); //Add the element
+                });
+            });
+        });
+    </script>
+</html>
